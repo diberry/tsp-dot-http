@@ -13,5 +13,5 @@
     /* Linting */
     "strict": true
   },
-  "include": ["src", "test"]
+  "include": ["rest-client-emitter/src", "test"]
 }

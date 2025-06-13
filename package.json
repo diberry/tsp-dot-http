@@ -1,42 +1,32 @@
 {
-  "name": "tsp-dot-http",
+  "name": "Widgets",
   "version": "0.1.0",
   "type": "module",
-  "main": "dist/src/index.js",
-  "exports": {
-    ".": {
-      "types": "./dist/src/index.d.ts",
-      "default": "./dist/src/index.js"
-    },
-    "./testing": {
-      "types": "./dist/src/testing/index.d.ts",
-      "default": "./dist/src/testing/index.js"
-    }
+  "scripts": {
+    "build": "npm run build -w rest-client-emitter",
+    "compile": "tsp compile ."
   },
   "peerDependencies": {
     "@typespec/compiler": "latest",
-    "@typespec/http": "latest"
+    "@typespec/http": "latest",
+    "@typespec/rest": "latest",
+    "@typespec/openapi": "latest",
+    "@typespec/openapi3": "latest",
+    "@typespec/http-server-js": "latest",
+    "tsp-dot-http": "workspace:*"
   },
   "devDependencies": {
-    "@types/node": "latest",
-    "@typescript-eslint/eslint-plugin": "^8.15.0",
-    "@typescript-eslint/parser": "^8.15.0",
     "@typespec/compiler": "latest",
     "@typespec/http": "latest",
-    "eslint": "^9.15.0",
-    "prettier": "^3.3.3",
-    "typescript": "^5.3.3",
-    "typescript-eslint": "^8.32.1"
-  },
-  "scripts": {
-    "build": "tsc",
-    "watch": "tsc --watch",
-    "test": "node --test",
-    "lint": "eslint src/ test/ --report-unused-disable-directives --max-warnings=0",
-    "lint:fix": "eslint . --report-unused-disable-directives --fix",
-    "format": "prettier .  --write",
-    "format:check": "prettier --check ."
+    "@typespec/rest": "latest",
+    "@typespec/openapi": "latest",
+    "@typespec/openapi3": "latest",
+    "@typespec/http-server-js": "latest"
   },
   "private": true,
-  "license": "MIT"
+  "workspaces": {
+    "packages": [
+      "tsp-dot-http"
+    ]
+  }
 }

@@ -1,6 +1,8 @@
 import { EmitContext, emitFile, resolvePath } from "@typespec/compiler";
 import { getAllHttpServices, HttpOperation, HttpService } from "@typespec/http";
-import { TspDotHttpOptions } from "./lib.js";
+import { TspDotHttpOptions } from "./tspDotHttpLib.js";
+import { HttpFileGenerator, extractPathParams } from "../http-file/fileGenerator.js";
+import { HttpContext } from "../borrowed/context.js";
 
 import path from "node:path";
 
@@ -39,10 +41,10 @@ async function emitService(
     // TODO: this is very primitive since we're assuming all operations in the service are at the same namespace/interface
     // level of organization. What we probably want to do instead is find the path of containers from the service namespace
     // to the operation and use those to create a path for the file.
-    const fileName = `${operation.operation.name}.http`;
+    const fileName = `${operation.container.name.toLowerCase()}_${operation.operation.name}_${operation.verb}.http`;
 
     emitFile(context.program, {
-      content: getHttpFile(context, service, operation),
+      content: await getHttpFile(context, service, operation),
       path: path.join(outputDir, fileName),
     });
   }
@@ -56,11 +58,36 @@ async function emitService(
  * @param operation - The HTTP operation we are emitting.
  * @returns The string contents of the .http file.
  */
-function getHttpFile(
+async function getHttpFile(
   context: EmitContext<TspDotHttpOptions>,
   service: HttpService,
   operation: HttpOperation
-): string {
-  // Generate the HTTP file content here.
-  return `### ${operation.operation.name}`;
+): Promise<string> {
+
+  const httpContext: HttpContext = {};
+
+  const operationName = operation.operation.name;
+  const verb = operation.verb?.toUpperCase() || "GET";
+  const path = operation.path || "/";
+
+  const generator = new HttpFileGenerator();
+
+  // Extract parameters from the path and query parameters
+  const pathParams = extractPathParams(path);
+
+  // Add path and query parameters
+  generator.addPathParams(pathParams);
+  generator.addQueryParams(operation.parameters);
+
+  // Set request line
+  generator.setRequestLine(verb, path);
+
+  // Add headers
+  generator.addHeaders(verb, service);
+
+  // Set body
+  generator.setBody(httpContext, verb, operation);
+
+  // Generate the final file content
+  return generator.generateFile(operationName);
 }
