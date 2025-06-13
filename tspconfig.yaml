@@ -1,14 +1,5 @@
 emit:
-  # - "@typespec/openapi3"
-  # - "@typespec/http-server-js"
   - "tsp-dot-http"
 options:
-  # "@typespec/openapi3":
-  #   emitter-output-dir: "{output-dir}/server2/schema"
-  #   openapi-versions:
-  #     - 3.1.0
-  # "@typespec/http-server-js":
-  #   emitter-output-dir: "{output-dir}/server2"
-  #   express: true
   "tsp-dot-http":
     emitter-output-dir: "{output-dir}/rest-client-http"

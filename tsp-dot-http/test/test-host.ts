@@ -4,7 +4,7 @@ import {
   createTestWrapper,
   expectDiagnosticEmpty,
 } from "@typespec/compiler/testing";
-import { TspDotHttpTestLibrary } from "../rest-client-emitter/src/testing/index.js";
+import { TspDotHttpTestLibrary } from "../src/testing/index.js";
 
 export async function createTspDotHttpTestHost() {
   return createTestHost({

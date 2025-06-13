@@ -1,3 +1,3 @@
-export { $onEmit } from "./emitter.js";
-export { $lib } from "./lib.js";
+export { $onEmit } from "./emitter/emitter.js";
+export { $lib } from "./emitter/lib.js";
 

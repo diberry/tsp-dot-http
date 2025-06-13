@@ -4,14 +4,25 @@
     "useDefineForClassFields": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "lib": ["ES2022"],
+    "lib": [
+      "ES2022"
+    ],
     "rootDir": ".",
     "outDir": "dist",
     "sourceMap": true,
     "declaration": true,
-
     /* Linting */
-    "strict": true
+    "strict": true,
+    "noImplicitAny": false,
+    "noUnusedParameters": false,
+    "skipLibCheck": true
   },
-  "include": ["rest-client-emitter/src", "test"]
+  "include": [
+    "src",
+    "test"
+  ],
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off"
+  }
 }

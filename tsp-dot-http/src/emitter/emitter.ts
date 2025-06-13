@@ -1,6 +1,6 @@
 import { EmitContext, emitFile, resolvePath } from "@typespec/compiler";
 import { getAllHttpServices, HttpOperation, HttpService } from "@typespec/http";
-import { TspDotHttpOptions } from "./tspDotHttpLib.js";
+import { TspDotHttpOptions } from "./lib.js";
 import { HttpFileGenerator, extractPathParams } from "../http-file/fileGenerator.js";
 import { HttpContext } from "../borrowed/context.js";
 
