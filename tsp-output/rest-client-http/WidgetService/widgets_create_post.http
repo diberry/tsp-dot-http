@@ -1,0 +1,16 @@
+### create
+
+// Variables section - defines variables to use in the request
+@host = localhost
+@port = 8080
+@baseUrl = http://{{host}}{{#if port}}:{{port}}{{/if}}
+
+POST {{baseUrl}}/widgets
+Content-Type: application/json
+
+// JSON body
+{
+ "id": "example", // Scalar string
+ "weight": 42, // Scalar int32
+ "color": "red", // Union type: red | blue
+}

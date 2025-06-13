@@ -1,0 +1,13 @@
+### read
+
+// Variables section - defines variables to use in the request
+@host = localhost
+@port = 8080
+@baseUrl = http://{{host}}{{#if port}}:{{port}}{{/if}}
+
+// Path parameters
+@id = REPLACE_WITH_ID_VALUE
+
+GET {{baseUrl}}/containers/{{id}}
+
+// No body allowed for this request method

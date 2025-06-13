@@ -1,0 +1,20 @@
+### replace
+
+// Variables section - defines variables to use in the request
+@host = localhost
+@port = 8080
+@baseUrl = http://{{host}}{{#if port}}:{{port}}{{/if}}
+
+// Path parameters
+@id = REPLACE_WITH_ID_VALUE
+
+PUT {{baseUrl}}/containers/{{id}}
+Content-Type: application/json
+
+// JSON body
+{
+ "id": "example", // Scalar string
+ "name": "example", // Scalar string
+ "capacity": 42, // Scalar int32
+  "widgets": null, // Unknown type: Model Array
+}
